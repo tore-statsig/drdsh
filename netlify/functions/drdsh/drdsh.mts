@@ -1,5 +1,5 @@
 import { Context } from '@netlify/functions'
-import { StatsigOnDeviceEvalClient, StatsigSpecsDataAdapter } from '/Users/torehanssen/private-js-client-monorepo/packages/js-on-device-eval-client';
+import { StatsigOnDeviceEvalClient, StatsigSpecsDataAdapter } from '@statsig/js-on-device-eval-client';
 
 const config = '{"dynamic_configs":[],"feature_gates":[],"layers":{},"layer_configs":[],"has_updates":true,"time":1754608437048,"company_id":"1uYITXXXQ194aXOL4EqtF7","response_format":"dcs-v1","session_replay_info":{"sampling_rate":1,"recording_blocked":false},"id_lists":{},"diagnostics":{"initialize":10000,"dcs":1000,"download_config_specs":1000,"idlist":100,"get_id_list":100,"get_id_list_sources":100,"log":100,"log_event":100,"api_call":100},"sdk_flags":{},"sdk_configs":{"event_queue_size":2000,"event_content_encoding":"gzip","sampling_mode":"none"}}';
 
