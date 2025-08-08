@@ -20,7 +20,7 @@ export default async (request: Request, context: Context) => {
         disableBackgroundCacheRefresh: true,
     });
 
-    client.logEvent('drdsh_redirect', user);
+    client.logEvent('drdsh_redirect', user, request.url);
     await client.flush();
 
     return new Response(null,{
