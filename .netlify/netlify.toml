@@ -2,7 +2,6 @@ functionsDirectory = "/Users/torehanssen/sample/net/netlify/functions"
 functionsDirectoryOrigin = "ui"
 plugins = []
 headers = []
-redirects = []
 
 [build]
 publish = "/Users/torehanssen/sample/net"
@@ -26,3 +25,15 @@ functions = "/Users/torehanssen/sample/net/netlify/functions"
 [functions]
 
 [functions."*"]
+
+[[redirects]]
+from = "/*"
+to = "/.netlify/functions/drdsh"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
