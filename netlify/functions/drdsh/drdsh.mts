@@ -55,19 +55,36 @@ export default async (request: Request, context: Context) => {
         });
       }
     } else {
-      // Redirect for all other paths
-      client.logEvent('drdsh_redirect', user, request.url);
-      await client.flush();
+      // For all other paths, serve the redirect HTML page with controlled meta tags
+      try {
+        const redirectPath = join(process.cwd(), 'redirect.html');
+        const redirectHTML = readFileSync(redirectPath, 'utf-8');
+        
+        client.logEvent('drdsh_redirect', user, request.url);
+        await client.flush();
 
-      return new Response(null, {
-        status: 301,
-        headers: {
-          Location: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-        },
-      });
+        return new Response(redirectHTML, {
+          status: 200,
+          headers: {
+            'Content-Type': 'text/html',
+          },
+        });
+      } catch (fileError) {
+        // If redirect.html read fails, fall back to direct redirect
+        console.error('Failed to read redirect.html:', fileError);
+        client.logEvent('drdsh_redirect', user, request.url);
+        await client.flush();
+
+        return new Response(null, {
+          status: 301,
+          headers: {
+            Location: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+          },
+        });
+      }
     }
   } catch (error) {
-    // If there's an error, still redirect
+    // If there's an error, fall back to direct redirect
     return new Response(null, {
       status: 301,
       headers: {
